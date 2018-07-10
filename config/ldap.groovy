@@ -10,7 +10,7 @@ import hudson.security.*
 def instance = Jenkins.getInstance()
 
 
-if ("{{toLowercase cfg.admin.strategy}}" == "ldap") {
+if ("{{cfg.admin.strategy}}" == "ldap") {
   def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
   strategy.setAllowAnonymousRead(false)
   instance.setAuthorizationStrategy(strategy)

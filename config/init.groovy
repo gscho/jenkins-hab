@@ -104,7 +104,7 @@ if(hasConfigBeenUpdated) {
     println "Jenkins up-to-date.  Nothing to do."
 }
 
-if ("{{toLowercase cfg.admin.strategy}}" == "default") {
+if ("{{cfg.admin.strategy}}" == "default") {
   def hudsonRealm = new HudsonPrivateSecurityRealm(false)
   hudsonRealm.createAccount("{{cfg.admin.username}}", "{{cfg.admin.password}}")
   instance.setSecurityRealm(hudsonRealm)
