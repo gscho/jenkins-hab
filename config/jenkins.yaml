@@ -1,0 +1,36 @@
+jenkins:
+  slaveAgentPort: 9999
+  crumbIssuer: standard
+  agentProtocols:
+    - "jnlp4"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        -
+          id: "{{cfg.admin.username}}"
+          password: "{{cfg.admin.password}}"
+  clouds:
+    - docker:
+        name: "docker-swarm"
+        dockerApi:
+          dockerHost:
+            uri: "{{cfg.config.swarmHost}}"
+        templates:
+          - labelString: "docker-agent"
+            dockerTemplateBase:
+              image: "jenkins/jnlp-slave"
+            remoteFs: "/home/jenkins"
+            connector:
+              attach:
+                user: "jenkins"
+            instanceCapStr: "10"
+  remotingSecurity:
+    enabled: true
+unclassified:
+  location:
+    adminAddress: {{cfg.admin.emailAddress}}
+    url: {{cfg.config.jenkinsRoot}}

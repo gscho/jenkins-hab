@@ -1,24 +1,5 @@
 # Mac OS
 .DS_Store
-results
-#  Local .terraform directories
-**/.terraform/*
+# Habitat
+results/
 
-# .tfstate files
-*.tfstate
-*.tfstate.*
-
-# .tfvars files
-*.tfvars
-tf.sh
-bldr.env
-!test/assets/test.tfvars
-
-# local secrets
-
-ldap.pem
-secrets.tf
-
-# test kitchen
-.kitchen
-tf_output.yml
