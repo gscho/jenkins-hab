@@ -1,6 +1,3 @@
-# Use this file to templatize your application's native configuration files.
-# See the docs at https://www.habitat.sh/docs/create-packages-configure/.
-# You can safely delete this file if you don't need it.
 [jenkins]
 prefix = "/"
 
@@ -9,7 +6,7 @@ timeout = 60
 
 [jenkins.http]
 enabled = true
-port = 80
+port = 8080
 httpListenAddress = '0.0.0.0'
 
 [jenkins.https]
@@ -25,21 +22,27 @@ enabled = false
 port = 8009
 
 [java]
-opts = "-Djenkins.install.runSetupWizard=false -XX:PermSize=512M -XX:MaxPermSize=2048M -Xmn128M -Xms1024M -Xmx2048M"
+opts = "-Djenkins.install.runSetupWizard=false"
 
 [admin]
 username = "admin"
 password = "admin"
-strategy = "default"
+emailAddress = "gregs@indellient.com"
 
 [config]
+swarmHost = "unix:///var/run/docker.sock"
+jenkinsRoot = "http://ci.example.com"
 slavePort = 9999
 plugins = [
   "git",
   "github",
   "github-oauth",
-  "token-macro",
   "cloudbees-folder",
+  "configuration-as-code",
+  "configuration-as-code-support",
+  "credentials",
+  "token-macro",
+  "blueocean",
   "job-dsl",
   "view-job-filters",
   "embeddable-build-status",
@@ -48,7 +51,7 @@ plugins = [
   "rich-text-publisher-plugin",
   "console-column-plugin",
   "docker-plugin",
-  "blueocean",
-  "ldap",
-  "habitat"
+  "hashicorp-vault-plugin",
+  "habitat",
+  "github-oauth"
 ]

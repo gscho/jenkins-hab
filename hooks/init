@@ -1,8 +1,0 @@
-#!/bin/sh
-
-exec 2>&1
-
-mv {{pkg.svc_config_path}}/init.groovy {{pkg.svc_data_path}}
-
-mkdir -p {{pkg.svc_data_path}}/init.groovy.d
-mv {{pkg.svc_config_path}}/*.groovy {{pkg.svc_data_path}}/init.groovy.d
