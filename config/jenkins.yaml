@@ -1,8 +1,12 @@
 jenkins:
   slaveAgentPort: 9999
-  crumbIssuer: standard
   agentProtocols:
-    - "jnlp4"
+    - "JNLP4-connect"
+  remotingSecurity:
+    enabled: true
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
   authorizationStrategy:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
@@ -28,9 +32,12 @@ jenkins:
               attach:
                 user: "jenkins"
             instanceCapStr: "10"
-  remotingSecurity:
-    enabled: true
 unclassified:
   location:
     adminAddress: {{cfg.admin.emailAddress}}
     url: {{cfg.config.jenkinsRoot}}
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"

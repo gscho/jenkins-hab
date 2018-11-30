@@ -105,26 +105,9 @@ if(hasConfigBeenUpdated) {
     println "Jenkins up-to-date.  Nothing to do."
 }
 
-// {{#unless cfg.ldap ~}}
-//   def hudsonRealm = new HudsonPrivateSecurityRealm(false)
-//   hudsonRealm.createAccount("{{cfg.admin.username}}", "{{cfg.admin.password}}")
-//   instance.setSecurityRealm(hudsonRealm)
-
-//   def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
-//   strategy.setAllowAnonymousRead(false)
-//   instance.setAuthorizationStrategy(strategy)
-// {{/unless ~}}
-
-// instance.setSlaveAgentPort({{cfg.config.slavePort}})
-
-//Disable deprecated JNLP protocols
-// instance.getInjector()
-//         .getInstance(AdminWhitelistRule.class)
-//         .setMasterKillSwitch(false)
-// instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
-// HashSet<String> newProtocols = new HashSet<>(instance.getAgentProtocols())
-// newProtocols.removeAll(Arrays.asList('JNLP3-connect', 'JNLP2-connect', 'JNLP-connect'))
-// instance.setAgentProtocols(newProtocols)
+instance.getInjector()
+        .getInstance(AdminWhitelistRule.class)
+        .setMasterKillSwitch(false)
 // //Disable cli over remoting
-// instance.getDescriptor('jenkins.CLI').get().setEnabled(false)
+instance.getDescriptor('jenkins.CLI').get().setEnabled(false)
 instance.save()

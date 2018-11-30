@@ -5,10 +5,9 @@ exec 2>&1
 export JAVA_HOME="{{pkgPathFor "core/jre8"}}"
 export JENKINS_HOME="{{pkg.svc_data_path}}"
 export JENKINS_WAR="{{pkg.path}}/jenkins.war"
+export CASC_JENKINS_CONFIG="{{pkg.svc_config_path}}/jenkins.yaml"
 
 mv {{pkg.svc_config_path}}/init.groovy {{pkg.svc_data_path}}/init.groovy
-mv {{pkg.svc_config_path}}/jenkins.yaml {{pkg.svc_data_path}}/jenkins.yaml
-export CASC_JENKINS_CONFIG={{pkg.svc_data_path}}/jenkins.yaml
 
 exec java \
   {{cfg.java.opts}} \

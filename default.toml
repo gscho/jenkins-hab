@@ -52,6 +52,5 @@ plugins = [
   "console-column-plugin",
   "docker-plugin",
   "hashicorp-vault-plugin",
-  "habitat",
-  "github-oauth"
+  "habitat"
 ]
